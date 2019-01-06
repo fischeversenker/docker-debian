@@ -1,9 +1,32 @@
-# use a node base image
-FROM debian
-LABEL maintainer "benlue@s3root.ovh"
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2
-RUN echo “Hello Apache server on Ubuntu Docker” > /var/www/html/index.html
-EXPOSE 80
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+#
+# Debian Dockerfile
+#
+# https://github.com/yangqi/docker-debian
+#
+
+# Pull base image.
+FROM debian:8.1
+
+MAINTAINER Qi Yang <i@yangqi.me>
+
+# Install.
+RUN \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get clean
+
+# Add files.
+ADD root/.bashrc /root/.bashrc
+ADD root/.gitconfig /root/.gitconfig
+ADD root/.scripts /root/.scripts
+
+# Set environment variables.
+ENV HOME /root
+
+# Define working directory.
+WORKDIR /root
+
+# Define default command.
+CMD ["bash"]
 
 
