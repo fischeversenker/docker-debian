@@ -60,9 +60,6 @@ RUN useradd -ms /bin/bash benlue
 RUN mkdir -p /home/benlue/shared
 
 # Add files.
-#ADD root/.bashrc /root/.bashrc
-#ADD root/.gitconfig /root/.gitconfig
-#ADD root/.scripts /root/.scripts
 ADD shared/install_repo.sh /home/benlue/shared/install_repo.sh
 ADD shared/sync_lineage-16.0.sh /home/benlue/shared/sync_lineage-16.0.sh
 
