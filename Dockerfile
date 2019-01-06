@@ -1,8 +1,6 @@
 #
 # Debian Dockerfile
 #
-# https://github.com/yangqi/docker-debian
-#
 
 # Pull base image.
 FROM debian:stable-slim
