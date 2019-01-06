@@ -16,13 +16,6 @@ RUN \
   apt-get -y upgrade && \
   apt-get clean
 
-RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
-
-RUN mkdir -p /lineage-16.0 && cd /lineage-16.0
-RUN repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-16.0
-RUN repo sync -f --force-sync --force-broken --no-clone-bundle --no-tags -j2
-
-
 # build tools
 RUN apt-get update && apt-get -y --no-install-recommends install \
     openjdk-8-jdk \
@@ -74,12 +67,10 @@ ADD shared/install_repo.sh /home/benlue/shared/install_repo.sh
 ADD shared/sync_lineage-16.0.sh /home/benlue/shared/sync_lineage-16.0.sh
 
 # Set environment variables.
-ENV HOME /root
+ENV HOME /home/benlue
 
 # Define working directory.
-WORKDIR /root
+WORKDIR /home/benlue
 
 # Define default command.
 CMD ["bash"]
-
-
