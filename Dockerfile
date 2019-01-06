@@ -5,10 +5,10 @@
 #
 
 # Pull base image.
-FROM debian:8.1
+FROM debian:9
 
-MAINTAINER Qi Yang <i@yangqi.me>
-
+MAINTAINER BenLue <benlue@s3root.ovh>
+ENV DEBIAN_FRONTEND noninteractive
 # Install.
 RUN \
   apt-get update && \
