@@ -15,10 +15,17 @@ RUN \
   apt-get -y upgrade && \
   apt-get clean
 
+# Add user
+RUN useradd -ms /bin/bash benlue
+
+# Add folder
+RUN mkdir -p /home/benlue/shared
+
 # Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/.scripts /root/.scripts
+#ADD root/.bashrc /root/.bashrc
+#ADD root/.gitconfig /root/.gitconfig
+#ADD root/.scripts /root/.scripts
+ADD shared/install_repo.sh /home/benlue/shared/install_repo.sh
 
 # Set environment variables.
 ENV HOME /root
