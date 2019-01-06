@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM debian:9
+FROM debian:stable-slim
 
 MAINTAINER BenLue <benlue@s3root.ovh>
 ENV DEBIAN_FRONTEND noninteractive
@@ -15,6 +15,13 @@ RUN \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get clean
+
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
+
+RUN mkdir -p /lineage-16.0 && cd /lineage-16.0
+RUN repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-16.0
+RUN repo sync -f --force-sync --force-broken --no-clone-bundle --no-tags -j2
+
 
 # build tools
 RUN apt-get update && apt-get -y --no-install-recommends install \
